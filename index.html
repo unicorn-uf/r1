@@ -7,13 +7,15 @@
   <title>나의 포트폴리오 | 유니콘</title>
   <style>
     :root {
-      --ink: #202321;
-      --muted: #68706b;
-      --paper: #f7f8f6;
+      --ink: #17192b;
+      --muted: #64677a;
+      --paper: #f7f7ff;
       --surface: #ffffff;
-      --line: #e5e9e5;
-      --accent: #315d50;
-      --accent-soft: #eaf1ed;
+      --line: #e5e5f2;
+      --accent: #5146e5;
+      --accent-soft: #eeedff;
+      --coral: #ff735c;
+      --lime: #d9f36a;
       --radius: 22px;
       --shadow: 0 18px 50px rgba(30, 45, 37, .07);
     }
@@ -81,31 +83,47 @@
       color: white; font-weight: 750; font-size: .92rem;
       transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
-    .button:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(49,93,80,.18); }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(81,70,229,.24); }
     .button.secondary { color: var(--ink); background: transparent; border-color: var(--line); }
     .button.secondary:hover { background: var(--surface); }
-    .hero-visual {
-      position: relative; min-height: 390px; display: grid; place-items: center;
+    .hero-visual { position: relative; min-height: 440px; display: grid; place-items: center; isolation: isolate; }
+    .hero-art { position: relative; width: min(100%, 430px); aspect-ratio: 1 / 1; display: grid; place-items: center; }
+    .hero-art::before {
+      content: ""; position: absolute; inset: 7% 5% 7% 10%;
+      background: linear-gradient(145deg, #7168ff 0%, #3930bd 100%);
+      border-radius: 34% 66% 58% 42% / 42% 38% 62% 58%;
+      transform: rotate(-8deg); box-shadow: 0 28px 60px rgba(81,70,229,.24); z-index: -2;
     }
-    .visual-frame {
-      width: min(100%, 390px); aspect-ratio: 4 / 4.5;
-      border-radius: 48% 48% 28px 28px; background: #e8eee9;
-      border: 1px solid #dce5de; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; text-align: center;
-      padding: 34px; overflow: hidden;
+    .hero-art::after {
+      content: ""; position: absolute; width: 116px; height: 116px;
+      border: 2px solid rgba(255,255,255,.7); border-radius: 50%; top: 3%; right: 3%; z-index: -1;
     }
-    .visual-mark {
-      width: 104px; height: 104px; display: grid; place-items: center;
-      border-radius: 50%; background: var(--surface); color: var(--accent);
-      font-size: 2.8rem; margin-bottom: 22px;
+    .art-orbit { position: absolute; width: 76%; height: 76%; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; transform: rotate(-28deg); }
+    .art-orbit::before {
+      content: ""; position: absolute; width: 19px; height: 19px; border-radius: 50%;
+      background: var(--lime); top: 8%; left: 13%; box-shadow: 0 0 0 8px rgba(217,243,106,.16);
     }
-    .visual-frame strong { font-size: 1.25rem; letter-spacing: -.04em; }
-    .visual-frame small { margin-top: 7px; color: var(--muted); }
+    .art-spark {
+      position: absolute; left: 1%; bottom: 18%; width: 58px; height: 58px;
+      display: grid; place-items: center; color: var(--ink); background: var(--lime);
+      border-radius: 18px; transform: rotate(-13deg); font-size: 1.8rem;
+      box-shadow: 0 12px 24px rgba(25,25,50,.15);
+    }
+    .profile-photo-slot {
+      width: 56%; aspect-ratio: 4 / 4.7; position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 20px; color: white;
+      border: 2px dashed rgba(255,255,255,.9); border-radius: 46% 46% 22px 22px;
+      background: linear-gradient(160deg, rgba(255,255,255,.2), rgba(255,255,255,.06));
+      backdrop-filter: blur(3px);
+    }
+    .profile-photo-slot .photo-symbol { font-size: 2.3rem; margin-bottom: 10px; }
+    .profile-photo-slot strong { font-size: 1rem; }
+    .profile-photo-slot small { margin-top: 6px; color: rgba(255,255,255,.85); font-size: .73rem; }
     .visual-note {
-      position: absolute; right: 0; bottom: 25px; padding: 15px 19px;
-      background: var(--surface); border: 1px solid var(--line);
-      border-radius: 16px; box-shadow: var(--shadow); font-size: .85rem;
-      font-weight: 700;
+      position: absolute; right: -1%; bottom: 9%; padding: 14px 18px;
+      background: var(--lime); color: var(--ink); border-radius: 14px;
+      box-shadow: var(--shadow); font-size: .82rem; font-weight: 800; transform: rotate(3deg);
     }
     section { padding: 88px 0; }
     .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 34px; }
@@ -141,16 +159,25 @@
     }
     .interest span { display: block; color: var(--accent); font-size: .76rem; font-weight: 800; margin-bottom: 7px; }
     .interest strong { font-size: .95rem; }
-    .work-section { background: #eef2ee; }
+    .work-section { background: #efefff; }
     .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
     .project-card { overflow: hidden; }
     .project-image {
       min-height: 220px; display: grid; place-items: center; text-align: center;
-      padding: 25px; background: #e7ece8; color: #66766c;
+      padding: 25px; background: linear-gradient(135deg, #eeedff, #fff0ec); color: #5146e5;
       border-bottom: 1px solid var(--line);
     }
     .project-image .placeholder-icon { font-size: 2.2rem; display: block; margin-bottom: 8px; }
-    .project-image small { display: block; color: #77847b; }
+    .project-image small { display: block; color: #73758b; }
+    .project-photo-slot {
+      width: min(100%, 420px); min-height: 160px; padding: 22px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border: 2px dashed rgba(81,70,229,.4); border-radius: 18px;
+      background: rgba(255,255,255,.62); color: #5146e5;
+    }
+    .project-photo-slot strong { font-size: .98rem; }
+    .project-photo-slot em { margin-top: 8px; color: #85869a; font-size: .72rem; font-style: normal; }
+    .project-image img { display: block; width: 100%; height: 100%; min-height: 220px; object-fit: cover; position: absolute; inset: 0; }
     .project-body { padding: 27px; }
     .project-meta { color: var(--accent); font-size: .76rem; font-weight: 850; letter-spacing: .1em; }
     .project-body h3 { margin: 8px 0 10px; font-size: 1.45rem; letter-spacing: -.05em; }
@@ -183,17 +210,44 @@
       .nav-links a { padding: 5px 0; }
       .hero { padding: 70px 0 58px; }
       .hero-grid { grid-template-columns: 1fr; gap: 28px; }
-      .hero-visual { min-height: 300px; }
-      .visual-frame { width: min(78%, 300px); }
-      .visual-note { right: 3%; bottom: 8px; }
-      section { padding: 66px 0; }
-      .section-head { display: block; }
-      .section-intro { margin-top: 15px; }
-      .about-grid, .project-grid { grid-template-columns: 1fr; }
-      .interest-grid { grid-template-columns: 1fr; }
-      .contact-panel { padding: 30px 24px; display: block; }
-      .contact-note { text-align: left; margin-top: 22px; }
-      .footer-inner { flex-direction: column; }
+      .hero-visual { position: relative; min-height: 440px; display: grid; place-items: center; isolation: isolate; }
+    .hero-art { position: relative; width: min(100%, 430px); aspect-ratio: 1 / 1; display: grid; place-items: center; }
+    .hero-art::before {
+      content: ""; position: absolute; inset: 7% 5% 7% 10%;
+      background: linear-gradient(145deg, #7168ff 0%, #3930bd 100%);
+      border-radius: 34% 66% 58% 42% / 42% 38% 62% 58%;
+      transform: rotate(-8deg); box-shadow: 0 28px 60px rgba(81,70,229,.24); z-index: -2;
+    }
+    .hero-art::after {
+      content: ""; position: absolute; width: 116px; height: 116px;
+      border: 2px solid rgba(255,255,255,.7); border-radius: 50%; top: 3%; right: 3%; z-index: -1;
+    }
+    .art-orbit { position: absolute; width: 76%; height: 76%; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; transform: rotate(-28deg); }
+    .art-orbit::before {
+      content: ""; position: absolute; width: 19px; height: 19px; border-radius: 50%;
+      background: var(--lime); top: 8%; left: 13%; box-shadow: 0 0 0 8px rgba(217,243,106,.16);
+    }
+    .art-spark {
+      position: absolute; left: 1%; bottom: 18%; width: 58px; height: 58px;
+      display: grid; place-items: center; color: var(--ink); background: var(--lime);
+      border-radius: 18px; transform: rotate(-13deg); font-size: 1.8rem;
+      box-shadow: 0 12px 24px rgba(25,25,50,.15);
+    }
+    .profile-photo-slot {
+      width: 56%; aspect-ratio: 4 / 4.7; position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 20px; color: white;
+      border: 2px dashed rgba(255,255,255,.9); border-radius: 46% 46% 22px 22px;
+      background: linear-gradient(160deg, rgba(255,255,255,.2), rgba(255,255,255,.06));
+      backdrop-filter: blur(3px);
+    }
+    .profile-photo-slot .photo-symbol { font-size: 2.3rem; margin-bottom: 10px; }
+    .profile-photo-slot strong { font-size: 1rem; }
+    .profile-photo-slot small { margin-top: 6px; color: rgba(255,255,255,.85); font-size: .73rem; }
+    .visual-note {
+      position: absolute; right: -1%; bottom: 9%; padding: 14px 18px;
+      background: var(--lime); color: var(--ink); border-radius: 14px;
+      box-shadow: var(--shadow); font-size: .82rem; font-weight: 800; transform: rotate(3deg);
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -230,11 +284,15 @@
             <a class="button secondary" href="#about">저를 소개합니다</a>
           </div>
         </div>
-        <div class="hero-visual" aria-label="프로필 이미지 자리">
-          <div class="visual-frame">
-            <div class="visual-mark" aria-hidden="true">✳</div>
-            <strong>배우고, 만들고,<br>한 걸음 더 나아가기</strong>
-            <small>사진을 준비하면 이 영역에 넣어 주세요.</small>
+        <div class="hero-visual" aria-label="프로필 사진과 장식 도형 영역">
+          <div class="hero-art">
+            <div class="art-orbit" aria-hidden="true"></div>
+            <div class="profile-photo-slot">
+              <span class="photo-symbol" aria-hidden="true">＋</span>
+              <strong>프로필 사진 자리</strong>
+              <small>이 영역에 내 사진을 넣어 주세요</small>
+            </div>
+            <div class="art-spark" aria-hidden="true">✳</div>
           </div>
           <div class="visual-note">Curious mind, open future.</div>
         </div>
@@ -288,8 +346,14 @@
         </div>
         <div class="project-grid">
           <article class="project-card">
+            <!-- 사진 교체: 이 안에 <img src="images/digital-zone.jpg" alt="디지털 체험존 활동 사진"> 추가 -->
             <div class="project-image">
-              <div><span class="placeholder-icon" aria-hidden="true">▧</span><strong>활동 사진 자리</strong><small>디지털 체험존 사진으로 교체하세요.</small></div>
+              <div class="project-photo-slot">
+                <span class="placeholder-icon" aria-hidden="true">＋</span>
+                <strong>사진 넣는 곳 ①</strong>
+                <small>디지털 체험존 활동 사진</small>
+                <em>권장 비율 16:9</em>
+              </div>
             </div>
             <div class="project-body">
               <div class="project-meta">2026 · DIGITAL EXPERIENCE</div>
@@ -299,8 +363,14 @@
             </div>
           </article>
           <article class="project-card">
+            <!-- 사진 교체: 이 안에 <img src="images/ebook-cover.jpg" alt="AI 전자책 표지"> 추가 -->
             <div class="project-image">
-              <div><span class="placeholder-icon" aria-hidden="true">▧</span><strong>전자책 표지 자리</strong><small>직접 만든 전자책 표지나 작업 화면으로 교체하세요.</small></div>
+              <div class="project-photo-slot">
+                <span class="placeholder-icon" aria-hidden="true">＋</span>
+                <strong>사진 넣는 곳 ②</strong>
+                <small>AI 전자책 표지 또는 작업 화면</small>
+                <em>권장 비율 16:9</em>
+              </div>
             </div>
             <div class="project-body">
               <div class="project-meta">2026 · AI &amp; E-BOOK</div>
