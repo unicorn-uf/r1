@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="오늘도 미래를 위해 배우고 도전하는 유니콘의 포트폴리오">
   <title>나의 포트폴리오 | 유니콘</title>
+  <!-- 사진 파일은 index.html과 같은 위치에 images 폴더를 만들고 아래 이름으로 저장하세요:
+       profile.jpg / digital-zone.jpg / ebook-cover.jpg -->
   <style>
     :root {
       --ink: #17192b;
@@ -120,6 +122,11 @@
     .profile-photo-slot .photo-symbol { font-size: 2.3rem; margin-bottom: 10px; }
     .profile-photo-slot strong { font-size: 1rem; }
     .profile-photo-slot small { margin-top: 6px; color: rgba(255,255,255,.85); font-size: .73rem; }
+    .profile-photo-slot > img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; border-radius: inherit; z-index: 1;
+    }
+    .profile-photo-slot .photo-placeholder { position: relative; z-index: 2; }
     .visual-note {
       position: absolute; right: -1%; bottom: 9%; padding: 14px 18px;
       background: var(--lime); color: var(--ink); border-radius: 14px;
@@ -163,7 +170,8 @@
     .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
     .project-card { overflow: hidden; }
     .project-image {
-      min-height: 220px; display: grid; place-items: center; text-align: center;
+      min-height: 220px; position: relative; overflow: hidden;
+      display: grid; place-items: center; text-align: center;
       padding: 25px; background: linear-gradient(135deg, #eeedff, #fff0ec); color: #5146e5;
       border-bottom: 1px solid var(--line);
     }
@@ -177,7 +185,8 @@
     }
     .project-photo-slot strong { font-size: .98rem; }
     .project-photo-slot em { margin-top: 8px; color: #85869a; font-size: .72rem; font-style: normal; }
-    .project-image img { display: block; width: 100%; height: 100%; min-height: 220px; object-fit: cover; position: absolute; inset: 0; }
+    .project-image > img { display: block; width: 100%; height: 100%; min-height: 220px; object-fit: cover; position: absolute; inset: 0; }
+    .project-image .project-photo-slot { position: relative; z-index: 1; }
     .project-body { padding: 27px; }
     .project-meta { color: var(--accent); font-size: .76rem; font-weight: 850; letter-spacing: .1em; }
     .project-body h3 { margin: 8px 0 10px; font-size: 1.45rem; letter-spacing: -.05em; }
@@ -288,9 +297,12 @@
           <div class="hero-art">
             <div class="art-orbit" aria-hidden="true"></div>
             <div class="profile-photo-slot">
-              <span class="photo-symbol" aria-hidden="true">＋</span>
-              <strong>프로필 사진 자리</strong>
-              <small>이 영역에 내 사진을 넣어 주세요</small>
+              <img src="images/profile.jpg" alt="유니콘 프로필 사진" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true">
+              <div class="photo-placeholder">
+                <span class="photo-symbol" aria-hidden="true">＋</span>
+                <strong>프로필 사진 자리</strong>
+                <small>images/profile.jpg 파일을 넣어 주세요</small>
+              </div>
             </div>
             <div class="art-spark" aria-hidden="true">✳</div>
           </div>
@@ -346,12 +358,12 @@
         </div>
         <div class="project-grid">
           <article class="project-card">
-            <!-- 사진 교체: 이 안에 <img src="images/digital-zone.jpg" alt="디지털 체험존 활동 사진"> 추가 -->
             <div class="project-image">
+              <img src="images/digital-zone.jpg" alt="디지털 체험존 활동 사진" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true">
               <div class="project-photo-slot">
                 <span class="placeholder-icon" aria-hidden="true">＋</span>
                 <strong>사진 넣는 곳 ①</strong>
-                <small>디지털 체험존 활동 사진</small>
+                <small>images/digital-zone.jpg 파일을 넣어 주세요</small>
                 <em>권장 비율 16:9</em>
               </div>
             </div>
@@ -363,12 +375,12 @@
             </div>
           </article>
           <article class="project-card">
-            <!-- 사진 교체: 이 안에 <img src="images/ebook-cover.jpg" alt="AI 전자책 표지"> 추가 -->
             <div class="project-image">
+              <img src="images/ebook-cover.jpg" alt="AI 전자책 표지 또는 작업 화면" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true">
               <div class="project-photo-slot">
                 <span class="placeholder-icon" aria-hidden="true">＋</span>
                 <strong>사진 넣는 곳 ②</strong>
-                <small>AI 전자책 표지 또는 작업 화면</small>
+                <small>images/ebook-cover.jpg 파일을 넣어 주세요</small>
                 <em>권장 비율 16:9</em>
               </div>
             </div>
